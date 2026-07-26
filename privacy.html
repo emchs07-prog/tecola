@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tecola — プライバシーポリシー</title>
+<meta name="description" content="カレンダーアプリ「Tecola」のプライバシーポリシーです。">
+<style>
+  :root {
+    --leather1: #4a3421;
+    --leather2: #30200f;
+    --paper: #fbf7ec;
+    --ink: #3a3226;
+    --sub: #96897a;
+    --rule: #ddd3bd;
+    --accent: #a33b2e;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+    background: linear-gradient(160deg, var(--leather1), var(--leather2));
+    color: var(--ink);
+    line-height: 1.85;
+    padding: 28px 14px 48px;
+  }
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    background: var(--paper);
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.45);
+    padding: 44px 40px 40px 64px;
+    position: relative;
+  }
+  .page::before {
+    content: "";
+    position: absolute;
+    left: 30px; top: 0; bottom: 0;
+    width: 1px;
+    background: rgba(197,88,74,.5);
+  }
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 4px;
+  }
+  .updated { color: var(--sub); font-size: .85rem; margin-bottom: 26px; }
+  h2 {
+    font-size: 1.05rem;
+    color: var(--accent);
+    border-bottom: 2px solid var(--rule);
+    padding-bottom: 6px;
+    margin: 30px 0 10px;
+  }
+  p { margin-bottom: 12px; }
+  ul { padding-left: 1.4em; margin-bottom: 12px; }
+  li { margin-bottom: 6px; }
+  a { color: var(--accent); }
+  .summary {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-left: 4px solid var(--accent);
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin-bottom: 10px;
+  }
+  footer {
+    margin-top: 40px;
+    padding-top: 14px;
+    border-top: 1px solid var(--rule);
+    font-size: .8rem;
+    color: var(--sub);
+  }
+  @media (max-width: 480px) {
+    .page { padding: 32px 20px 32px 46px; }
+    .page::before { left: 22px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>Tecola プライバシーポリシー</h1>
+  <p class="updated">制定日：2026/07/23（2026/07/26 アプリ名変更にともない改題）</p>
+
+  <div class="summary">
+    <p><strong>要約：</strong>Tecola（以下「本アプリ」）は、ユーザーの個人データを収集しません。開発者がユーザーのカレンダー・タスク・位置情報等のデータを受け取ること、外部へ送信して保存すること、第三者へ提供することは一切ありません。広告・アクセス解析・トラッキングも使用していません。</p>
+  </div>
+
+  <h2>1. カレンダーデータ</h2>
+  <p>本アプリは、予定の表示・追加・編集・削除のために、iOSのカレンダー機能（EventKit）へのアクセス許可をお願いしています。カレンダーデータの処理はすべてお使いの端末内で完結し、外部のサーバーへ送信されることはありません。開発者がユーザーの予定の内容を知ることはできません。</p>
+
+  <h2>2. Googleタスク連携（任意機能）</h2>
+  <p>本アプリのGoogleタスク連携は任意のオプション機能です。ユーザーが設定画面からご自身のGoogleアカウントでログインした場合にのみ、Google Tasks APIを通じてご本人のタスクを表示・編集します。</p>
+  <ul>
+    <li>通信はお使いの端末とGoogleのサーバーとの間で直接行われ、開発者のサーバーを経由しません。開発者がタスクの内容やアカウント情報にアクセスすることはできません。</li>
+    <li>認証情報（トークン）は端末内に安全に保存され、外部に送信されません。ログアウトすると削除されます。</li>
+    <li>本アプリによるGoogleユーザーデータの取り扱いは、<a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Google APIサービスのユーザーデータに関するポリシー</a>（限定使用の要件を含む）に準拠します。</li>
+    <li>ログインしない場合でも、カレンダー機能をはじめとする本アプリの主要機能はすべてご利用いただけます。</li>
+  </ul>
+
+  <h2>3. 天気予報</h2>
+  <p>天気予報の表示には、気象データサービス「<a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>」を利用しています。天気の取得時に送信されるのは、ユーザーがアプリ内で設定した都市（地点）の緯度・経度のみです。端末のGPS位置情報は使用せず、個人を特定できる情報は送信されません。</p>
+
+  <h2>4. 六曜・今日は何の日</h2>
+  <p>六曜および「今日は何の日」は、アプリ内蔵の計算・データにより表示しています。通信は発生せず、参考情報としてご利用いただくものです。</p>
+
+  <h2>5. 広告・解析・トラッキング</h2>
+  <p>本アプリは、広告の表示、アクセス解析ツール、トラッキング技術を一切使用していません。</p>
+
+  <h2>6. お子様のプライバシー</h2>
+  <p>本アプリはすべての年齢の方に安心してお使いいただけます。前述のとおり、いかなるユーザーからも個人データを収集しません。</p>
+
+  <h2>7. ポリシーの変更</h2>
+  <p>本ポリシーの内容は、機能追加等に伴い変更されることがあります。重要な変更がある場合は、本ページにて告知します。</p>
+
+  <h2>8. お問い合わせ</h2>
+  <p>本ポリシーに関するご質問は、下記までご連絡ください。</p>
+  <p><strong>開発者：</strong>Hideki<br>
+  <strong>メール：</strong><a href="mailto:emc.hs07@gmail.com">emc.hs07@gmail.com</a></p>
+
+  <footer>
+    <p><a href="index.html">← サポートページへ戻る</a></p>
+    <p>© 2026 Hideki. All rights reserved.</p>
+  </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tecola — サポート</title>
+<meta name="description" content="システム手帳風の週間カレンダーアプリ「Tecola」のサポートページです。">
+<style>
+  :root {
+    --leather1: #4a3421;
+    --leather2: #30200f;
+    --paper: #fbf7ec;
+    --ink: #3a3226;
+    --sub: #96897a;
+    --rule: #ddd3bd;
+    --margin: #c5584a;
+    --accent: #a33b2e;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+    background: linear-gradient(160deg, var(--leather1), var(--leather2));
+    color: var(--ink);
+    line-height: 1.85;
+    padding: 28px 14px 48px;
+  }
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    background: var(--paper);
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.45);
+    padding: 44px 40px 40px 64px;
+    position: relative;
+    overflow: hidden;
+  }
+  /* 綴じ穴 */
+  .page::before {
+    content: "";
+    position: absolute;
+    left: 30px; top: 0; bottom: 0;
+    width: 1px;
+    background: rgba(197,88,74,.5);
+  }
+  .hole {
+    position: absolute;
+    left: 10px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--leather2);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.6);
+  }
+  h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.9rem;
+    letter-spacing: .04em;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .tagline { color: var(--sub); font-size: .95rem; margin-bottom: 28px; }
+  h2 {
+    font-size: 1.1rem;
+    color: var(--accent);
+    border-bottom: 2px solid var(--rule);
+    padding-bottom: 6px;
+    margin: 34px 0 12px;
+  }
+  p { margin-bottom: 12px; }
+  ul { padding-left: 1.4em; margin-bottom: 12px; }
+  li { margin-bottom: 4px; }
+  a { color: var(--accent); }
+  .note { font-size: .85rem; color: var(--sub); }
+  .contact {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-top: 8px;
+  }
+  footer {
+    margin-top: 40px;
+    padding-top: 14px;
+    border-top: 1px solid var(--rule);
+    font-size: .8rem;
+    color: var(--sub);
+  }
+  @media (max-width: 480px) {
+    .page { padding: 32px 20px 32px 46px; }
+    .page::before { left: 22px; }
+    .hole { left: 7px; width: 8px; height: 8px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <span class="hole" style="top:18%"></span>
+  <span class="hole" style="top:21%"></span>
+  <span class="hole" style="top:24%"></span>
+  <span class="hole" style="top:74%"></span>
+  <span class="hole" style="top:77%"></span>
+  <span class="hole" style="top:80%"></span>
+
+  <h1>Tecola</h1>
+  <p class="tagline">システム手帳風の週間カレンダー（iPhone / iPad / Mac対応）</p>
+
+  <h2>アプリについて</h2>
+  <p>Tecolaは、革カバーと差し替え用紙をモチーフにした「週間見開き」スタイルのカレンダーアプリです。1週間の予定・タスク・六曜・天気を1画面で見渡せます。</p>
+  <ul>
+    <li>週間ページ（iPadは手帳見開き・iPhoneは一覧表示）と月間ページ</li>
+    <li>六曜・今日は何の日・祝日表示</li>
+    <li>天気予報つき。「出張」の予定がある日は出張先の天気に自動切替</li>
+    <li>Googleタスク連携（任意。ログインしなくてもカレンダー機能はすべて利用可能）</li>
+    <li>ホーム画面ウィジェット、カバー色・用紙デザインの選択</li>
+  </ul>
+
+  <h2>よくあるご質問</h2>
+  <p><strong>Q. 予定が表示されません。</strong><br>
+  カレンダーへのアクセス許可が必要です。iOSの「設定」→「アプリ」→「Tecola」→「カレンダー」で「フルアクセス」を許可してください。表示するカレンダーはアプリ内の⚙️設定画面で選択できます。</p>
+  <p><strong>Q. Googleアカウントは必要ですか？</strong><br>
+  不要です。Googleタスク連携は任意機能で、利用する場合のみ設定画面からログインします。</p>
+  <p><strong>Q. 天気が表示されません。</strong><br>
+  天気の取得にはインターネット接続が必要です。予報範囲は約2週間先までのため、それより先の日付には表示されません。地点はアプリ内の設定画面（自宅地点・出張ルール）で変更できます。</p>
+  <p><strong>Q. ウィジェットに何も表示されません。</strong><br>
+  先にアプリ本体を開き、カレンダーへのアクセスを許可してください。その後ホーム画面を長押し→「＋」→「Tecola」で追加できます。</p>
+  <p><strong>Q. 六曜や「今日は何の日」の内容は正確ですか？</strong><br>
+  六曜は天文計算による参考情報、「今日は何の日」は一般的な記念日をまとめた参考情報です。行事や契約などの正式な判断にはご利用にならないでください。</p>
+
+  <h2>お問い合わせ</h2>
+  <div class="contact">
+    <p>ご質問・不具合のご報告・ご要望は、下記メールアドレスまでお気軽にご連絡ください。</p>
+    <p><strong>メール：</strong><a href="mailto:emc.hs07@gmail.com">emc.hs07@gmail.com</a></p>
+    <p class="note">通常2〜3営業日以内に返信いたします。不具合のご報告の際は、お使いの機種・iOSバージョン・状況（スクリーンショットなど）を添えていただけると助かります。</p>
+  </div>
+
+  <h2>プライバシー</h2>
+  <p>Tecolaは、ユーザーの個人データを収集しません。詳しくは<a href="privacy.html">プライバシーポリシー</a>をご覧ください。</p>
+
+  <footer>
+    <p>Tecola — 毎朝ひらく1ページが、少しだけ楽しみになりますように。</p>
+    <p>© 2026 Hideki. All rights reserved.</p>
+  </footer>
+</div>
+</body>
+</html>
