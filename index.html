@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tecola｜システム手帳風の週間カレンダー（iPhone・iPad・Mac）</title>
 <!-- 検索向けの設定（ここから） -->
 <meta name="description" content="システム手帳風の週間カレンダー。1週間を見開きで、手帳のように見渡せます。使い方とよくある質問。">
@@ -389,5 +389,8 @@
 </section>
 <!-- この作者のほかのアプリ（ここまで） -->
 <footer>© 2026 Hideki Sato — Tecola</footer>
+<!-- iPad などで向きを変えたとき、新しい幅に合わせて表示し直す（ここから） -->
+<script>(function(){var m=document.querySelector('meta[name="viewport"]');if(!m)return;var c='width=device-width, initial-scale=1';function refit(){m.setAttribute('content',c+', maximum-scale=1');setTimeout(function(){m.setAttribute('content',c);},500);}window.addEventListener('orientationchange',refit);if(window.screen&&screen.orientation&&screen.orientation.addEventListener){screen.orientation.addEventListener('change',refit);}})();</script>
+<!-- iPad などで向きを変えたとき、新しい幅に合わせて表示し直す（ここまで） -->
 </body>
 </html>
