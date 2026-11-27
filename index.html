@@ -11,88 +11,172 @@
 <!-- 検索向けの設定（ここまで） -->
 <style>
   :root {
-    --leather1: #4a3421;
-    --leather2: #30200f;
-    --paper: #fbf7ec;
-    --ink: #3a3226;
-    --sub: #96897a;
-    --rule: #ddd3bd;
-    --margin: #c5584a;
-    --accent: #a33b2e;
+    color-scheme: light dark;
+    --bg:#ffffff; --bg2:#f5f7fb; --card:#ffffff; --text:#14171f; --mute:#5b6475; --line:#e3e7ef;
+    --accent:#8a5a2b; --accent2:#b23a3a; --code:#0b0d12; --codetext:#e8ecf3; --shadow:0 10px 30px rgba(20,30,60,.08);
   }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
-    background: linear-gradient(160deg, var(--leather1), var(--leather2));
-    color: var(--ink);
-    line-height: 1.85;
-    padding: 28px 14px 48px;
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#0b0d12; --bg2:#11151d; --card:#151a23; --text:#e9edf5; --mute:#9aa4b6; --line:#232a36;
+            --accent:#e0a96d; --accent2:#f07a7a; --shadow:0 10px 30px rgba(0,0,0,.35); }
   }
-  .page {
-    max-width: 720px;
-    margin: 0 auto;
-    background: var(--paper);
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0,0,0,.45);
-    padding: 44px 40px 40px 64px;
-    position: relative;
-    overflow: hidden;
-  }
-  /* 綴じ穴 */
-  .page::before {
-    content: "";
-    position: absolute;
-    left: 30px; top: 0; bottom: 0;
-    width: 1px;
-    background: rgba(197,88,74,.5);
-  }
-  .hole {
-    position: absolute;
-    left: 10px;
-    width: 10px; height: 10px;
-    border-radius: 50%;
-    background: var(--leather2);
-    box-shadow: inset 0 1px 2px rgba(0,0,0,.6);
-  }
-  h1 {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1.9rem;
-    letter-spacing: .04em;
-    color: var(--ink);
-    margin-bottom: 2px;
-  }
-  .tagline { color: var(--sub); font-size: .95rem; margin-bottom: 28px; }
-  h2 {
-    font-size: 1.1rem;
-    color: var(--accent);
-    border-bottom: 2px solid var(--rule);
-    padding-bottom: 6px;
-    margin: 34px 0 12px;
-  }
-  p { margin-bottom: 12px; }
-  ul { padding-left: 1.4em; margin-bottom: 12px; }
-  li { margin-bottom: 4px; }
-  a { color: var(--accent); }
-  .note { font-size: .85rem; color: var(--sub); }
-  .contact {
-    background: #fff;
-    border: 1px solid var(--rule);
-    border-radius: 8px;
-    padding: 16px 20px;
-    margin-top: 8px;
-  }
-  footer {
-    margin-top: 40px;
-    padding-top: 14px;
-    border-top: 1px solid var(--rule);
-    font-size: .8rem;
-    color: var(--sub);
-  }
-  @media (max-width: 480px) {
-    .page { padding: 32px 20px 32px 46px; }
-    .page::before { left: 22px; }
-    .hole { left: 7px; width: 8px; height: 8px; }
-  }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; scroll-padding-top:72px; }
+  body { margin:0; background:var(--bg); color:var(--text); line-height:1.8;
+         font-family:-apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+         -webkit-font-smoothing:antialiased; }
+  a { color:var(--accent); }
+  img { max-width:100%; height:auto; }
+  .wrap { max-width:1040px; margin:0 auto; padding:0 24px; }
+  /* 上の帯 */
+  .top { position:sticky; top:0; z-index:10; backdrop-filter:saturate(180%) blur(14px); -webkit-backdrop-filter:saturate(180%) blur(14px);
+         background:color-mix(in srgb, var(--bg) 82%, transparent); border-bottom:1px solid var(--line); }
+  .top .wrap { display:flex; align-items:center; gap:16px; height:56px; }
+  .brand { display:flex; align-items:center; gap:10px; font-weight:700; text-decoration:none; color:var(--text); white-space:nowrap; }
+  .brand img { width:28px; height:28px; border-radius:7px; }
+  .top nav { margin-left:auto; display:flex; gap:4px; overflow-x:auto; scrollbar-width:none; }
+  .top nav a { color:var(--mute); text-decoration:none; font-size:.88rem; padding:6px 10px; border-radius:8px; white-space:nowrap; }
+  .top nav a:hover { color:var(--text); background:var(--bg2); }
+  /* 先頭 */
+  .hero { position:relative; overflow:hidden; text-align:center; padding:72px 0 40px; }
+  .hero::before { content:""; position:absolute; inset:-30% -10% auto; height:120%; z-index:-1; filter:blur(20px);
+    background:radial-gradient(40% 45% at 30% 35%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 70%),
+               radial-gradient(35% 40% at 72% 30%, color-mix(in srgb, var(--accent2) 18%, transparent), transparent 70%); }
+  .hero .icon { width:112px; height:112px; border-radius:25px; box-shadow:var(--shadow); }
+  .hero h1 { font-size:clamp(2.4rem, 6vw, 3.6rem); line-height:1.15; margin:20px 0 4px; letter-spacing:-.01em; font-weight:800; }
+  .hero .yomi { color:var(--mute); font-size:.9rem; margin:0; }
+  .hero .sub { font-size:clamp(1.15rem, 2.6vw, 1.5rem); font-weight:700; margin:14px 0 10px;
+    background:linear-gradient(90deg, var(--accent), var(--accent2)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .hero .lead { max-width:36em; margin:0 auto; color:var(--mute); }
+  .chips { display:flex; justify-content:center; flex-wrap:wrap; gap:8px; margin:20px 0 0; padding:0; list-style:none; }
+  .chips li { font-size:.82rem; font-weight:600; color:var(--mute); border:1px solid var(--line); background:var(--card); border-radius:999px; padding:3px 12px; }
+  .btns { display:flex; justify-content:center; flex-wrap:wrap; gap:12px; margin:28px 0 0; }
+  .btn { display:inline-flex; align-items:center; gap:8px; font-weight:700; text-decoration:none; border-radius:12px; padding:12px 22px; }
+  .btn.primary { background:var(--text); color:var(--bg); }
+  .btn.ghost { border:1px solid var(--line); color:var(--text); background:var(--card); }
+  .btn:hover { opacity:.88; }
+  .shot-hero { margin:48px auto 0; max-width:960px; }
+  .shot-hero img, .gallery img { display:block; width:100%; border-radius:12px; border:1px solid var(--line); box-shadow:var(--shadow); }
+  .note { max-width:44em; margin:28px auto 0; font-size:.88rem; color:var(--mute); text-align:center; }
+  /* 節 */
+  section.block { padding:64px 0; }
+  section.block.alt { background:var(--bg2); }
+  .eyebrow { display:block; text-align:center; font-size:.78rem; font-weight:700; letter-spacing:.12em; color:var(--accent); margin:0 0 6px; }
+  h2 { text-align:center; font-size:clamp(1.5rem, 3.4vw, 2rem); line-height:1.35; margin:0 0 12px; }
+  .intro { text-align:center; color:var(--mute); max-width:38em; margin:0 auto 36px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:16px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:22px 22px 18px; }
+  .card .ic { display:inline-grid; place-items:center; width:40px; height:40px; border-radius:11px; font-size:1.2rem;
+              background:color-mix(in srgb, var(--accent) 14%, transparent); }
+  .card h3 { font-size:1.06rem; margin:12px 0 6px; line-height:1.5; }
+  .card p { margin:0; color:var(--mute); font-size:.94rem; }
+  .card .tag { display:inline-block; font-size:.72rem; font-weight:700; color:var(--accent2); margin-left:6px; vertical-align:2px; }
+  .codes { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin:28px 0 0; padding:0; list-style:none; }
+  .codes li { font-family:Menlo, ui-monospace, monospace; font-size:.85rem; background:var(--code); color:var(--codetext); border-radius:8px; padding:4px 12px; }
+  /* 画面 */
+  .gallery { display:grid; grid-auto-flow:column; grid-auto-columns:min(82%, 720px); gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; padding:4px 4px 16px; }
+  .gallery figure { margin:0; scroll-snap-align:center; }
+  .gallery.phone { grid-auto-columns:min(56%, 240px); }
+  .gallery figcaption { font-size:.88rem; color:var(--mute); margin-top:10px; text-align:center; }
+  .gallery-label { font-weight:700; margin:32px 0 12px; }
+  /* 使い方 */
+  .how { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:16px; }
+  .how .card h3 { margin-top:0; font-size:1.15rem; }
+  .how ol { margin:0; padding-left:1.3em; }
+  .how li { margin:0 0 8px; }
+  kbd { font-family:-apple-system, sans-serif; font-size:.82em; border:1px solid var(--line); border-bottom-width:2px; border-radius:6px; padding:0 6px; background:var(--bg2); }
+  .md-list { max-width:760px; margin:0 auto; padding-left:1.3em; }
+  .md-list li { margin:0 0 10px; }
+  .for { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:12px; max-width:860px; margin:0 auto; padding:0; list-style:none; }
+  .for li { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; font-weight:600; }
+  .for li::before { content:"✓"; color:var(--accent); margin-right:8px; }
+  /* よくある質問 */
+  .faq { max-width:780px; margin:0 auto; }
+  .faq details { background:var(--card); border:1px solid var(--line); border-radius:14px; margin:0 0 10px; }
+  .faq summary { cursor:pointer; list-style:none; padding:16px 48px 16px 20px; font-weight:700; position:relative; }
+  .faq summary::-webkit-details-marker { display:none; }
+  .faq summary::after { content:"+"; position:absolute; right:20px; top:50%; transform:translateY(-50%); font-size:1.3rem; color:var(--mute); }
+  .faq details[open] summary::after { content:"−"; }
+  .faq .a { padding:0 20px 16px; color:var(--mute); }
+  .faq .a p { margin:0 0 8px; }
+  /* お問い合わせ */
+  .contact { max-width:640px; margin:0 auto; text-align:center; }
+  .contact .card { padding:28px; }
+  .contact p { margin:0 0 10px; }
+  .other-apps { max-width:780px; margin:0 auto !important; padding:56px 24px 0; }
+  .other-apps h2 { margin-bottom:4px; }
+  .other-apps > p { text-align:center; }
+  .other-apps ul { display:grid; grid-template-columns:repeat(auto-fill, minmax(320px, 1fr)); gap:4px 20px; }
+  .other-apps li { line-height:1.5; }
+  footer { text-align:center; color:var(--mute); font-size:.85rem; padding:40px 24px 56px; margin-top:56px; border-top:1px solid var(--line); }
+  @media (max-width:640px) { .top nav { display:none; } .hero { padding-top:48px; } section.block { padding:48px 0; } }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto; } }
+  .en { padding-top:24px; }
+  .en-sep { border:0; border-top:1px solid var(--line); margin:64px 0 0; }
+  .en .how { grid-template-columns:1fr; max-width:780px; margin:0 auto; }
+  .keys { display:grid; grid-template-columns:repeat(auto-fill, minmax(420px, 1fr)); gap:16px; align-items:start; }
+  .keys h3 { margin:0 0 10px; font-size:1.05rem; }
+  .keys table { width:100%; border-collapse:collapse; font-size:.92rem; }
+  .keys th { text-align:left; white-space:nowrap; padding:6px 14px 6px 0; vertical-align:top; font-weight:400; }
+  .keys td { padding:6px 0; color:var(--mute); border-bottom:1px solid var(--line); }
+  .keys tr:last-child td { border-bottom:0; }
+  .keys-note { text-align:center; color:var(--mute); font-size:.9rem; margin:20px auto 0; max-width:44em; }
+  @media (max-width:640px) { .keys { grid-template-columns:1fr; } }
+  .notecard { display:block; text-align:left; text-decoration:none; color:var(--text); transition:transform .15s ease; }
+  .notecard:hover { transform:translateY(-2px); }
+  .nc-site { display:inline-block; font-size:.75rem; font-weight:700; color:var(--bg); background:var(--text); border-radius:6px; padding:1px 8px; }
+  .nc-title { display:block; font-weight:700; font-size:1.1rem; line-height:1.5; margin:10px 0 6px; }
+  .nc-lead { display:block; color:var(--mute); font-size:.92rem; }
+  .nc-go { display:block; color:var(--accent); font-weight:700; margin-top:10px; }
+  .paper { display:grid; grid-template-columns:repeat(auto-fill, minmax(150px, 1fr)); gap:12px; }
+  .paper .sw { border-radius:12px; border:1px solid rgba(0,0,0,.12); padding:14px 14px 12px; min-height:96px; font-size:.82rem; line-height:1.55; box-shadow:0 4px 14px rgba(0,0,0,.06); }
+  .paper .sw b { display:block; font-size:.95rem; margin-bottom:6px; }
+  .cover { display:grid; grid-template-columns:repeat(auto-fill, minmax(150px, 1fr)); gap:12px; }
+  .cover .sw { border-radius:12px; height:84px; color:#f3e8d0; display:flex; align-items:flex-end; padding:10px 14px; font-weight:700; font-size:.92rem; box-shadow:inset 0 0 0 2px rgba(255,255,255,.08), 0 6px 16px rgba(0,0,0,.18); }
+  .motifs { display:grid; grid-template-columns:repeat(auto-fill, minmax(104px, 1fr)); gap:12px; }
+  .motifs figure { margin:0; text-align:center; }
+  .motifs .tile { background:#FBF7EC; border:1px solid #e8dfcb; border-radius:14px; aspect-ratio:1; display:grid; place-items:center; }
+  .motifs .tile img { width:72%; height:auto; opacity:.85; }
+  .motifs figcaption { font-size:.82rem; color:var(--mute); margin-top:6px; line-height:1.4; }
+  .sub-h { font-size:1.15rem; margin:40px 0 6px; }
+  .sub-p { color:var(--mute); margin:0 0 16px; font-size:.94rem; }
+  .opts { display:flex; flex-wrap:wrap; gap:8px; padding:0; margin:0; list-style:none; }
+  .opts li { border:1px solid var(--line); background:var(--card); border-radius:999px; padding:3px 12px; font-size:.86rem; }
+  .try { display:grid; grid-template-columns:minmax(280px, 1fr) minmax(300px, 380px); gap:28px; align-items:start; }
+  @media (max-width:760px) { .try { grid-template-columns:1fr; } }
+  .ctl h4 { font-size:.92rem; margin:18px 0 8px; }
+  .ctl h4:first-child { margin-top:0; }
+  .chipset { display:flex; flex-wrap:wrap; gap:8px; }
+  .chipset button { font:inherit; font-size:.84rem; border:1px solid var(--line); background:var(--card); color:var(--text); border-radius:999px; padding:5px 12px; cursor:pointer; display:inline-flex; align-items:center; gap:6px; }
+  .chipset button[aria-pressed="true"] { border-color:var(--accent); box-shadow:0 0 0 2px color-mix(in srgb, var(--accent) 35%, transparent); font-weight:700; }
+  .chipset .dot { width:16px; height:16px; border-radius:50%; border:1px solid rgba(0,0,0,.18); flex:none; }
+  .ctl select { font:inherit; font-size:.9rem; padding:6px 10px; border-radius:10px; border:1px solid var(--line); background:var(--card); color:var(--text); }
+  .ctl .hint { color:var(--mute); font-size:.82rem; margin:6px 0 0; }
+  .pvframe { border-radius:26px; padding:12px; box-shadow:0 18px 40px rgba(0,0,0,.25); position:sticky; top:76px; }
+  .pvframe .head { display:flex; justify-content:space-between; align-items:center; font-weight:700; font-size:.86rem; padding:2px 6px 10px; font-family:Georgia, "Hiragino Mincho ProN", serif; }
+  .day { position:relative; overflow:hidden; border-radius:8px; margin:0 0 6px; padding:8px 10px 8px 22px; min-height:66px; font-size:.78rem; line-height:1.55; }
+  .day .hole { position:absolute; left:7px; width:7px; height:7px; border-radius:50%; }
+  .day .d { font-weight:700; font-size:.9rem; }
+  .day .r { font-size:.72rem; margin-left:6px; }
+  .day .ev { display:block; padding-left:6px; border-left:3px solid; margin-top:2px; }
+  .day .m, .month .m { position:absolute; pointer-events:none; -webkit-mask-size:contain; mask-size:contain; -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat; -webkit-mask-position:center; mask-position:center; }
+  .day > *:not(.m) { position:relative; }
+  .motifs figure { cursor:pointer; }
+  .motifs figure.on .tile { border-color:var(--accent); box-shadow:0 0 0 2px color-mix(in srgb, var(--accent) 40%, transparent); }
+  .tabs { display:flex; gap:6px; padding:0 4px 10px; }
+  .tabs button { font:inherit; font-size:.72rem; font-weight:700; letter-spacing:.06em; border:0; border-radius:6px; padding:4px 10px; cursor:pointer; }
+  .month { position:relative; overflow:hidden; border-radius:8px; padding:6px 6px 0 28px; display:flex; flex-direction:column; }
+  .month .ml { position:absolute; left:21px; top:0; bottom:0; width:1px; }
+  .month .mh, .month .mr { display:grid; grid-template-columns:repeat(6, 1fr); }
+  .month .mh { flex:none; }
+  .month .mh span { text-align:center; font-size:.6rem; font-weight:700; letter-spacing:.04em; padding-bottom:4px; font-family:Georgia, serif; }
+  .month .mr { border-top:1px solid; flex:1; min-height:0; }
+  .month .c { padding:3px 3px 2px; font-size:.6rem; line-height:1.35; border-left:1px solid; overflow:hidden; }
+  .month .c:first-child { border-left:0; }
+  .month .we { display:flex; flex-direction:column; border-left:1px solid; }
+  .month .we .c { flex:1; border-left:0; }
+  .month .we .c + .c { border-top:1px solid; }
+  .month .c b { display:block; font-size:.72rem; }
+  .month .c i { font-style:normal; display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 </style>
 <!-- リンクを貼ったときに出る紹介カード（OGP） -->
 <meta property="og:type" content="website">
@@ -105,55 +189,184 @@
 <meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
-<div class="page">
-  <span class="hole" style="top:18%"></span>
-  <span class="hole" style="top:21%"></span>
-  <span class="hole" style="top:24%"></span>
-  <span class="hole" style="top:74%"></span>
-  <span class="hole" style="top:77%"></span>
-  <span class="hole" style="top:80%"></span>
+<header class="top"><div class="wrap">
+  <a class="brand" href="#"><img src="img/icon.png" alt="" width="28" height="28">Tecola</a>
+  <nav aria-label="ページ内の移動"><a href="#features">特長</a><a href="#paper">用紙のデザイン</a><a href="#screens">画面</a><a href="#faq">よくある質問</a><a href="#contact">お問い合わせ</a></nav>
+</div></header>
 
+<main>
+<section class="hero"><div class="wrap">
+  <img class="icon" src="img/icon.png" alt="Tecola のアイコン" width="112" height="112">
   <h1>Tecola</h1>
-  <p class="tagline">システム手帳風の週間カレンダー（iPhone / iPad / Mac対応）</p>
-  <p class="og-card"><img src="og.png" alt="Tecolaの紹介" width="1200" height="630" style="display:block;width:100%;max-width:720px;height:auto;border-radius:12px;margin:12px 0 24px;"></p>
+  <p class="yomi">テコラ</p>
+  <p class="sub">システム手帳風の週間カレンダー。</p>
+  <p class="lead">紙のシステム手帳が好きだった方へ。革のカバーと差し替え用紙をモチーフにした「週間見開き」のカレンダーです。1週間の予定・タスク・六曜・天気を1画面で見渡せます。</p>
+  <ul class="chips"><li>iPhone</li><li>iPad</li><li>Mac</li><li>一度の購入で全部の端末に</li><li>データの収集なし</li></ul>
+  <div class="btns">
+    <a class="btn primary" href="https://apps.apple.com/jp/app/id6793530289">App Store で見る</a>
+    <a class="btn ghost" href="#features">できることを見る</a>
+  </div>
+  <div class="gallery phone" style="justify-content:center;grid-auto-columns:min(40%, 220px);margin-top:40px;">
+    <figure><img src="img/iphone-01.jpg" alt="Tecola の週間ページ" width="600" height="1300"></figure>
+    <figure><img src="img/iphone-02.jpg" alt="Tecola の月間ページ" width="600" height="1300"></figure>
+    <figure><img src="img/iphone-04.jpg" alt="Tecola の週間ページ（暗い表示）" width="600" height="1300"></figure>
+  </div>
+</div></section>
 
-  <h2>アプリについて</h2>
-  <p>Tecolaは、革カバーと差し替え用紙をモチーフにした「週間見開き」スタイルのカレンダーアプリです。1週間の予定・タスク・六曜・天気を1画面で見渡せます。</p>
-  <ul>
-    <li>週間ページ（iPadは手帳見開き・iPhoneは一覧表示）と月間ページ</li>
-    <li>六曜・今日は何の日・祝日表示</li>
-    <li>天気予報つき。「出張」の予定がある日は出張先の天気に自動切替</li>
-    <li>Googleタスク連携（任意。ログインしなくてもカレンダー機能はすべて利用可能）</li>
-    <li>ホーム画面ウィジェット、カバー色・用紙デザインの選択</li>
-  </ul>
+<section class="block alt" id="features"><div class="wrap">
+  <span class="eyebrow">FEATURES</span>
+  <h2>手帳をめくるように、1週間を見渡す</h2>
+  <p class="intro">お使いのカレンダー（iPhone に設定済みの Google カレンダー・iCloud カレンダーなど）をそのまま表示します。予定の追加・編集・削除もアプリの中で。</p>
+  <div class="grid">
+    <div class="card"><span class="ic" aria-hidden="true">📖</span><h3>週間ページと月間ページ</h3><p>iPad は手帳の見開き、iPhone は1週間の一覧。スワイプで前週・次週へ。月間ページから日付を押すと、その週へ飛べます。</p></div>
+    <div class="card"><span class="ic" aria-hidden="true">🗓️</span><h3>日付の欄はまるで手帳</h3><p>六曜、「今日は何の日」、名前つきの祝日。土日祝は紙の色も変わり、今日のページには赤いしおりのリボン。</p></div>
+    <div class="card"><span class="ic" aria-hidden="true">🌤️</span><h3>出張先の天気に自動で切り替え</h3><p>ふだんは自宅の天気。予定の題名に「出張」と地名があれば、その日だけ出張先の天気に変わります。</p></div>
+    <div class="card"><span class="ic" aria-hidden="true">✅</span><h3>Google タスクと連携（任意）</h3><p>ログインすると、タスクを期限日の欄に表示。チェックで完了、押して編集。ログインしなくてもカレンダーの機能はすべて使えます。</p></div>
+    <div class="card"><span class="ic" aria-hidden="true">🎨</span><h3>カバーと用紙を選べる</h3><p>カバー4色、用紙6色、紙に入るイラストは月替わりのセットも。<a href="#paper">用紙のデザインを見る</a></p></div>
+    <div class="card"><span class="ic" aria-hidden="true">📱</span><h3>ホーム画面のウィジェット</h3><p>「今日」または「今日と明日」の予定・タスク・六曜・天気を表示できます。</p></div>
+  </div>
+</div></section>
 
-  <h2>よくあるご質問</h2>
-  <p><strong>Q. 予定が表示されません。</strong><br>
-  カレンダーへのアクセス許可が必要です。iOSの「設定」→「アプリ」→「Tecola」→「カレンダー」で「フルアクセス」を許可してください。表示するカレンダーはアプリ内の⚙️設定画面で選択できます。</p>
-  <p><strong>Q. Googleアカウントは必要ですか？</strong><br>
-  不要です。Googleタスク連携は任意機能で、利用する場合のみ設定画面からログインします。</p>
-  <p><strong>Q. Googleタスクのログインで「このアプリは Google で確認されていません」と出ます。</strong><br>
-  Tecola が Google の確認をまだ受けていないために出る画面です。次の順に進むとログインできます。<br>
+<section class="block" id="paper"><div class="wrap">
+  <span class="eyebrow">DESIGN</span>
+  <h2>用紙とカバーを、好みの組み合わせで</h2>
+  <p class="intro">カバーの色、紙の色、紙に薄く入るイラストを、それぞれ別々に選べます。下で選ぶと、右の見本の週間ページがその組み合わせに変わります。アプリでは設定（⚙️）の「デザイン」から変えられ、ウィジェットにも反映されます。</p>
+  <div class="try">
+    <div class="ctl">
+      <h4>カバーの色</h4><div class="chipset" id="c-cover"></div>
+      <h4>用紙の色（背景色）</h4><div class="chipset" id="c-paper"></div>
+      <h4>イラスト</h4>
+      <select id="c-motif" aria-label="イラスト"><option value="none">なし</option><optgroup label="1枚（ワンポイント）"><option value="cat">キャット</option><option value="dog">ドッグ</option><option value="music">ミュージック</option></optgroup><optgroup label="12種セット（月替わり）"><option value="season">季節の行事（月替わり）</option><option value="flower">季節の花（月替わり）</option><option value="fruit">季節の果物（月替わり）</option><option value="sports">季節のスポーツ（月替わり）</option><option value="heritage1">世界遺産（日本）（月替わり）</option><option value="heritage2">世界遺産（世界）（月替わり）</option><option value="heraldry">紋章（月替わり）</option><option value="ivy">蔦模様（月替わり）</option></optgroup></select>
+      <select id="c-month" aria-label="表示する月"><option value="1">1月</option><option value="2">2月</option><option value="3">3月</option><option value="4">4月</option><option value="5">5月</option><option value="6">6月</option><option value="7">7月</option><option value="8" selected>8月</option><option value="9">9月</option><option value="10">10月</option><option value="11">11月</option><option value="12">12月</option></select>
+      <p class="hint">「12種セット」は、表示している月に合わせて絵柄が変わります。月を変えて見比べてください。ワンポイントにはほかに「肉球」もあります。</p>
+      <h4>イラストの表示量</h4><div class="chipset" id="c-density"></div>
+      <h4>イラストの大きさ</h4><div class="chipset" id="c-size"></div>
+      <h4>表示</h4><div class="chipset" id="c-dark"></div>
+      <p class="hint">見本は iPhone の週間ページをもとにした、ページの上での再現です。実際の画面とは細かいところが違います。</p>
+    </div>
+    <div class="pvframe" id="pv" aria-label="選んだデザインの見本"></div>
+  </div>
+
+</div></section>
+
+<script>
+(function(){
+  const PAPER={classic:{n:'クリーム',l:['FBF7EC','E9EFF8','3A3226','96897A','DDD3BD','C5584A'],d:['2A251C','242933','EAE2D0','9A9182','40392B','DC7364']},
+    white:{n:'ホワイト',l:['FFFFFF','EDF1F7','26262B','8A8A93','E3E3EA','C0392B'],d:['232327','262C38','E9E9EE','93939C','3B3B44','D86A5C']},
+    gray:{n:'グレー',l:['F6F7F9','EBEEF2','2B2E34','878B93','DCDEE3','8790A0'],d:['232529','272B33','E6E8EC','9297A0','393C43','99A2AF']},
+    beige:{n:'ベージュ',l:['F3EAD9','E7EAF1','3E3320','998B72','DDCFB4','A9743F'],d:['29231A','25292E','E9DEC8','A0937B','3F3626','C08A55']},
+    navy:{n:'ネイビー',l:['F1F5FB','E0E9F7','28344E','7C88A4','C9D4E8','4A6BB0'],d:['1D2536','243049','DCE4F4','8B97B4','344059','7A97D6']},
+    green:{n:'グリーン',l:['F4F8EF','E5EFDA','2C3A2C','7D8B77','CEDCC1','5B8A57'],d:['1E271F','27331F','DCE8D4','8C9A83','374431','84B27E']}};
+  const SATSUN={l:['2B5FB8','C23A34'],d:['7DA7FF','FF8A7C']};
+  const COVER={classic:{n:'クラシックブラウン',l:['4A3421','30200F','3D2B19','F3E8D0'],d:['20180F','100B06','191209','E5D6B4']},
+    black:{n:'ブラック',l:['3B3B42','1E1E24','101014','EDEDF2'],d:['1C1C21','0C0C10','08080B','D8D8DE']},
+    navy:{n:'ネイビー',l:['27395C','13203A','0E1830','E7EDF8'],d:['141F38','090F1F','060B18','D5DFF2']},
+    green:{n:'グリーン',l:['2F4A33','192B1D','122016','E6EFDD'],d:['152318','0A120C','070D08','D6E4CC']}};
+  const DENS={one:'ワンポイント',few:'ほどほど（3つ）',many:'たくさん'};
+  const SIZE={small:['極小',.5],medium:['小',1],large:['中',2],xlarge:['大',4]};
+  const SINGLE=['cat','dog','music'];
+  const st={paper:'classic',cover:'classic',motif:'flower',month:8,density:'one',size:'medium',dark:false,view:'week'};
+  const days=[['8/3','月','先勝',[['09:30','週次ミーティング'],['19:00','ジム']]],['8/4','火','友引',[['10:00','A社と打ち合わせ']]],['8/5','水','先負',[['終日','大阪出張'],['13:00','現地打ち合わせ']]],['8/6','木','仏滅',[['10:00','提案書レビュー']]],['8/7','金','大安',[['09:00','月次報告会'],['19:30','同期と食事']]],['8/8','土','赤口',[['10:00','ヨガ教室']]],['8/9','日','先勝',[['10:00','買い物']]]];
+  const $=id=>document.getElementById(id);
+  function chips(el,obj,key,label,dot){el.innerHTML='';for(const k in obj){const b=document.createElement('button');b.type='button';b.setAttribute('aria-pressed',st[key]===k);if(dot){const d=document.createElement('span');d.className='dot';d.style.background=dot(k);b.appendChild(d);}b.appendChild(document.createTextNode(label(k)));b.onclick=()=>{st[key]=k;render();};el.appendChild(b);}}
+  function img(){if(st.motif==='none')return null;return 'img/motif/'+(SINGLE.includes(st.motif)?st.motif:st.motif+'_'+String(st.month).padStart(2,'0'))+'.png';}
+  function rects(w,h){const k=SIZE[st.size][1];const s=Math.min(72,Math.max(28,Math.min(w,h)*.34))*k;
+    if(st.density==='one')return [[w-s-12,h-s-12,s]];
+    if(st.density==='few')return [[.8,.82],[.3,.52],[.62,.24]].map(([fx,fy])=>[w*fx-s/2,h*fy-s/2,s]);
+    const r=[],step=s*1.35;let y=6,row=0;while(y<h){let x=6+(row%2?step/2:0);while(x<w){r.push([x,y,s]);x+=step;}y+=step;row++;}return r;}
+  function render(){
+    const md=st.dark?'d':'l', P=PAPER[st.paper][md], C=COVER[st.cover][md], SS=SATSUN[md];
+    chips($('c-paper'),PAPER,'paper',k=>PAPER[k].n,k=>'#'+PAPER[k][md][0]);
+    chips($('c-cover'),COVER,'cover',k=>COVER[k].n,k=>'#'+COVER[k][md][0]);
+    chips($('c-density'),DENS,'density',k=>DENS[k]);
+    chips($('c-size'),SIZE,'size',k=>SIZE[k][0]);
+    chips($('c-dark'),{l:0,d:0},'darkKey',k=>k==='l'?'明るい表示':'暗い表示');
+    [...$('c-dark').children].forEach((b,i)=>{b.setAttribute('aria-pressed',(i===1)===st.dark);b.onclick=()=>{st.dark=i===1;render();};});
+    $('c-motif').value=st.motif; $('c-month').value=st.month; $('c-month').disabled=st.motif==='none'||SINGLE.includes(st.motif);
+    const pv=$('pv'); pv.style.background='linear-gradient(160deg,#'+C[0]+',#'+C[1]+')';
+    const tabBtn=(v,t)=>'<button type="button" data-view="'+v+'" style="'+(st.view===v?'background:#'+P[0]+';color:#'+P[2]:'background:transparent;color:#'+C[3]+';opacity:.75')+'">'+t+'</button>';
+    let h='<div class="head" style="color:#'+C[3]+'"><span>Tecola</span><span>'+(st.view==='week'?'8/3（月）〜8/9（日）':'2026年8月')+'</span></div><div class="tabs">'+tabBtn('week','WEEKLY')+tabBtn('month','MONTHLY')+'</div>';
+    if(st.view==='month'){ h+=monthHTML(P,SS); pv.innerHTML=h; bindTabs();
+      const mo=pv.querySelector('.month'); const used=pv.querySelector('.head').offsetHeight+pv.querySelector('.tabs').offsetHeight+24;
+      mo.style.height=Math.max(360,(st.pvH||560)-used)+'px';
+      const src=img(); if(src) paint(mo,src,P); return; }
+    days.forEach(([d,w,r,evs],i)=>{const we=i>=5; const dc=w==='土'?SS[0]:w==='日'?SS[1]:P[2];
+      h+='<div class="day" style="background:#'+(we?P[1]:P[0])+';color:#'+P[2]+'"><span class="hole" style="top:12px;background:#'+C[2]+'"></span><span class="hole" style="bottom:12px;background:#'+C[2]+'"></span><span class="d" style="color:#'+dc+'">'+d+'（'+w+'）</span><span class="r" style="color:#'+P[3]+'">'+r+'</span>';
+      evs.forEach(([t,e])=>{h+='<span class="ev" style="border-color:#'+P[5]+'"><span style="color:#'+P[3]+'">'+t+'</span> '+e+'</span>';}); h+='</div>';});
+    pv.innerHTML=h; bindTabs(); st.pvH=pv.offsetHeight;
+    const src=img(); if(!src)return;
+    pv.querySelectorAll('.day').forEach(el=>paint(el,src,P));
+  }
+  function paint(el,src,P){const w=el.clientWidth,hh=el.clientHeight;
+    rects(w,hh).forEach(([x,y,s])=>{const m=document.createElement('span');m.className='m';Object.assign(m.style,{left:x+'px',top:y+'px',width:s+'px',height:s+'px',background:'#'+P[2],opacity:st.dark?.14:.10,webkitMaskImage:'url('+src+')',maskImage:'url('+src+')'});el.appendChild(m);});}
+  function bindTabs(){document.querySelectorAll('#pv .tabs button').forEach(b=>b.onclick=()=>{st.view=b.dataset.view;render();});}
+  function monthHTML(P,SS){
+    const ev={3:'週次MTG',4:'A社',5:'大阪出張',7:'月次報告',11:'山の日',13:'お盆休み',14:'お盆休み',18:'通院',20:'B社',25:'締め日',28:'勉強会',31:'月末処理'};
+    const hol={11:1};
+    const cell=(d,col,bg)=>'<div class="c" style="border-color:#'+P[4]+';background:'+bg+'">'+(d?'<b style="color:#'+col+'">'+d+'</b>'+(ev[d]?'<i style="color:#'+(hol[d]?SS[1]:P[3])+'">'+ev[d]+'</i>':''):'')+'</div>';
+    let h='<div class="month" style="background:#'+P[0]+';color:#'+P[2]+'"><span class="ml" style="background:#'+P[5]+';opacity:.6"></span><div class="mh">';
+    ['MON','TUE','WED','THU','FRI'].forEach(w=>{h+='<span style="color:#'+P[3]+'">'+w+'</span>';});
+    h+='<span><span style="color:#'+SS[0]+'">SAT</span><span style="color:#'+P[3]+'">/</span><span style="color:#'+SS[1]+'">SUN</span></span></div>';
+    const cells=[]; for(let i=0;i<5;i++)cells.push(0); for(let d=1;d<=31;d++)cells.push(d); while(cells.length%7)cells.push(0);
+    for(let r=0;r<cells.length/7;r++){h+='<div class="mr" style="border-color:#'+P[4]+'">';
+      for(let c=0;c<5;c++){const d=cells[r*7+c];h+=cell(d,hol[d]?SS[1]:P[2],'transparent');}
+      h+='<div class="we" style="border-color:#'+P[4]+'">'+cell(cells[r*7+5],SS[0],'#'+P[1])+cell(cells[r*7+6],SS[1],'#'+P[1])+'</div></div>';}
+    return h+'</div>';
+  }
+  $('c-motif').onchange=e=>{st.motif=e.target.value;render();};
+  $('c-month').onchange=e=>{st.month=+e.target.value;render();};
+  window.addEventListener('resize',render);
+  render();
+})();
+</script>
+
+<section class="block alt" id="screens"><div class="wrap">
+  <span class="eyebrow">SCREENS</span>
+  <h2>画面</h2>
+  <p class="intro">横にすべらせると、ほかの画面も見られます。</p>
+  <p class="gallery-label">iPhone</p>
+  <div class="gallery phone">
+    <figure><img src="img/iphone-01.jpg" alt="" width="600" height="1300" loading="lazy"><figcaption>週間ページ</figcaption></figure>
+    <figure><img src="img/iphone-02.jpg" alt="" width="600" height="1300" loading="lazy"><figcaption>月間ページ</figcaption></figure>
+    <figure><img src="img/iphone-03.jpg" alt="" width="600" height="1300" loading="lazy"><figcaption>タスク</figcaption></figure>
+    <figure><img src="img/iphone-04.jpg" alt="" width="600" height="1300" loading="lazy"><figcaption>暗い表示</figcaption></figure>
+    <figure><img src="img/iphone-05.jpg" alt="" width="600" height="1300" loading="lazy"><figcaption>用紙のイラストを選ぶ</figcaption></figure>
+  </div>
+  <p class="gallery-label">iPad</p>
+  <div class="gallery">
+    <figure><img src="img/ipad-01.jpg" alt="" width="1200" height="900" loading="lazy"><figcaption>手帳の見開きの週間ページ</figcaption></figure>
+    <figure><img src="img/ipad-02.jpg" alt="" width="1200" height="900" loading="lazy"><figcaption>月間の見開き</figcaption></figure>
+    <figure><img src="img/ipad-03.jpg" alt="" width="1200" height="900" loading="lazy"><figcaption>タスク</figcaption></figure>
+  </div>
+</div></section>
+
+<section class="block" id="faq"><div class="wrap">
+  <span class="eyebrow">FAQ</span>
+  <h2>よくある質問</h2>
+  <div class="faq">
+    <details><summary>予定が表示されません。</summary><div class="a"><p>カレンダーへのアクセス許可が必要です。iOSの「設定」→「アプリ」→「Tecola」→「カレンダー」で「フルアクセス」を許可してください。表示するカレンダーはアプリ内の⚙️設定画面で選択できます。</p></div></details>
+    <details><summary>Googleアカウントは必要ですか？</summary><div class="a"><p>不要です。Googleタスク連携は任意機能で、利用する場合のみ設定画面からログインします。</p></div></details>
+    <details><summary>Googleタスクのログインで「このアプリは Google で確認されていません」と出ます。</summary><div class="a"><p>Tecola が Google の確認をまだ受けていないために出る画面です。次の順に進むとログインできます。<br>
   1. 左下の「詳細」を押します（右の青い「安全なページに戻る」を押すと、ログインをやめて戻ります）<br>
   2. 画面の下に出る「Tecola（安全ではないページ）に移動」を押します<br>
   3. Tecola がアクセスする内容を確かめて「続行」を押します<br>
-  タスクの内容は、お使いの端末と Google のあいだで直接やりとりされ、開発者には届きません。</p>
-  <p><strong>Q. 天気が表示されません。</strong><br>
-  天気の取得にはインターネット接続が必要です。予報範囲は約2週間先までのため、それより先の日付には表示されません。地点はアプリ内の設定画面（自宅地点・出張ルール）で変更できます。</p>
-  <p><strong>Q. ウィジェットに何も表示されません。</strong><br>
-  先にアプリ本体を開き、カレンダーへのアクセスを許可してください。その後ホーム画面を長押し→「＋」→「Tecola」で追加できます。</p>
-  <p><strong>Q. 六曜や「今日は何の日」の内容は正確ですか？</strong><br>
-  六曜は天文計算による参考情報、「今日は何の日」は一般的な記念日をまとめた参考情報です。行事や契約などの正式な判断にはご利用にならないでください。</p>
-
-  <h2>お問い合わせ</h2>
-  <div class="contact">
-    <p>ご質問・不具合のご報告・ご要望は、下記メールアドレスまでお気軽にご連絡ください。</p>
-    <p><strong>メール：</strong><a href="mailto:emc.hs07@gmail.com">emc.hs07@gmail.com</a></p>
-    <p class="note">通常2〜3営業日以内に返信いたします。不具合のご報告の際は、お使いの機種・iOSバージョン・状況（スクリーンショットなど）を添えていただけると助かります。</p>
+  タスクの内容は、お使いの端末と Google のあいだで直接やりとりされ、開発者には届きません。</p></div></details>
+    <details><summary>天気が表示されません。</summary><div class="a"><p>天気の取得にはインターネット接続が必要です。予報範囲は約2週間先までのため、それより先の日付には表示されません。地点はアプリ内の設定画面（自宅地点・出張ルール）で変更できます。</p></div></details>
+    <details><summary>ウィジェットに何も表示されません。</summary><div class="a"><p>先にアプリ本体を開き、カレンダーへのアクセスを許可してください。その後ホーム画面を長押し→「＋」→「Tecola」で追加できます。</p></div></details>
+    <details><summary>六曜や「今日は何の日」の内容は正確ですか？</summary><div class="a"><p>六曜は天文計算による参考情報、「今日は何の日」は一般的な記念日をまとめた参考情報です。行事や契約などの正式な判断にはご利用にならないでください。</p></div></details>
   </div>
+</div></section>
 
-  <h2>プライバシー</h2>
-  <p>Tecolaは、ユーザーの個人データを収集しません。詳しくは<a href="privacy.html">プライバシーポリシー</a>をご覧ください。</p>
+<section class="block alt" id="contact"><div class="wrap contact">
+  <span class="eyebrow">CONTACT</span>
+  <h2>お問い合わせ</h2>
+  <div class="card">
+    <p>ご質問・不具合のご報告・ご要望は、メールでお気軽にどうぞ。通常2〜3営業日以内にお返事します。</p>
+    <p><a class="btn ghost" href="mailto:emc.hs07@gmail.com">emc.hs07@gmail.com</a></p>
+    <p style="font-size:.9rem;color:var(--mute);margin:14px 0 0;">不具合のご報告の際は、お使いの機種・iOS のバージョン・状況（スクリーンショットなど）を添えていただけると助かります。Tecola は個人のデータを集めません。くわしくは <a href="privacy.html">プライバシーポリシー</a> をご覧ください。天気予報は Open-Meteo の気象データを使っています。</p>
+  </div>
+</div></section>
+</main>
 
 <!-- この作者のほかのアプリ（ここから） -->
 <section class="other-apps" style="margin-top:3rem;">
@@ -175,10 +388,6 @@
 </ul>
 </section>
 <!-- この作者のほかのアプリ（ここまで） -->
-  <footer>
-    <p>Tecola — 毎朝ひらく1ページが、少しだけ楽しみになりますように。</p>
-    <p>© 2026 Hideki. All rights reserved.</p>
-  </footer>
-</div>
+<footer>© 2026 Hideki Sato — Tecola</footer>
 </body>
 </html>
